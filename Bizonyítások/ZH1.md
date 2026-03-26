@@ -19,7 +19,7 @@ Tudjuk, hogy $\mathbb{N}$ a legkisebb induktív halmaz. Ebből következik:
 $$\mathbb{N} \subseteq S$$
 
 Mivel eleve $S \subseteq \mathbb{N}$ volt, a kettőből együtt az következik, hogy $S = \mathbb{N}$. 
-Vagyis $A_n$ igaz $\forall n \in \mathbb{N}$-re. $\square$
+Vagyis $A_n$ igaz $\forall n \in \mathbb{N}$-re.
 
 
 
@@ -29,19 +29,17 @@ Vagyis $A_n$ igaz $\forall n \in \mathbb{N}$-re. $\square$
 
 **Bizonyítás:**
 
-Legyen $A = H$, a $B$ pedig az $A$ halmaz összes felső korlátjának halmaza ($B := \{k \in \mathbb{R} : k \text{ felső korlátja } A\text{-nak}\}$).
+Legyen $A$ a $H$ halmaz összes felső korlátjának halmaza ($A := \{a \in \mathbb{R} : a \text{ felső korlátja } H\text{-nak}\}$).
 
-1. Mivel $A$ nem üres és felülről korlátos, ezért $B$ sem üres. A definícióból adódik, hogy bármely $a \in A$ és $k \in B$ elemre igaz, hogy $a \le k$.
+1. Mivel $H$ nem üres és felülről korlátos, ezért $A$ sem üres. A felső korlát definíciójából adódik, hogy bármely $h \in H$ és $a \in A$ elemre igaz, hogy $h \le a$.
 
-2. A teljességi axióma értelmében ekkor létezik olyan $\xi \in \mathbb{R}$ elválasztó pont, amelyre minden $a \in A$ és $k \in B$ esetén teljesül, hogy:
-$$a \le \xi \le k$$
+2. A teljességi axióma értelmében ekkor létezik olyan $\xi \in \mathbb{R}$ elválasztó pont, amelyre minden $h \in H$ és $a \in A$ esetén teljesül, hogy:
+$$h \le \xi \le a$$
 
 3. Ebből az egyenlőtlenségből két dolog is következik:
 
-* Mivel $a \le \xi$ minden $A$-beli elemre, ezért $\xi$ egy felső korlát.
-
-* Mivel $\xi \le k$ minden $B$-beli elemre (vagyis minden létező felső korlátra), ezért $\xi$ a legkisebb felső korlát.
-
+* Mivel $h \le \xi$ minden $H$-beli elemre, ezért $\xi$ egy felső korlátja a $H$ halmaznak (azaz $\xi \in A$).
+* Mivel $\xi \le a$ minden $A$-beli elemre (vagyis minden létező felső korlátra), ezért $\xi$ a legkisebb felső korlát (szuprémum).
 
 
 ## 3. Az arkhimédészi tulajdonság
@@ -197,6 +195,27 @@ $$b_n \le c_n < P$$
 
 
 
+
+## 9. A határérték és a rendezés kapcsolata
+
+**Tétel:** Legyenek $(a_n)$ és $(b_n)$ konvergens sorozatok, $\lim a_n = A$ és $\lim b_n = B$. Ha egy $N$ indextől kezdve minden $n \ge N$ esetén $a_n \le b_n$, akkor $A \le B$.
+
+**Bizonyítás (indirekt):**
+
+1. Tegyük fel az állítás ellenkezőjét, azaz hogy $A > B$.
+2. Válasszuk a két határérték távolságának a felét: $\varepsilon = \frac{A - B}{2} > 0$. 
+3. A konvergencia miatt elég nagy $n$ indexekre az $(a_n)$ és $(b_n)$ is beleesik a saját határértéke $\varepsilon$ sugarú környezetébe. Így létezik olyan $n_0 \ge N$ közös küszöbindex, hogy minden $n \ge n_0$ esetén:
+   $$b_n < B + \varepsilon \quad \text{és} \quad A - \varepsilon < a_n$$
+4. Mivel $B + \varepsilon = \frac{A + B}{2} = A - \varepsilon$, a fenti két egyenlőtlenséget összekapcsolhatjuk:
+   $$b_n < \frac{A + B}{2} < a_n$$
+5. Ebből egyértelműen következik, hogy $b_n < a_n$, ami **ellentmond** a kiinduló feltételünknek ($a_n \le b_n$). 
+
+Tehát az indirekt feltevésünk hamis volt, így biztosan **$A \le B$**.
+
+
+
+
+
 ## 10. Műveletek nullasorozatokkal
 
 **Tétel:**
@@ -232,6 +251,43 @@ Mivel $(b_n)$ nullsorozat, ezért konvergens. Minden konvergens sorozat korláto
 
 
 
+
+## 11. Konvergens sorozatok szorzatára vonatkozó tétel
+
+**Tétel:** Ha az $(a_n)$ és $(b_n)$ sorozatok konvergensek, és $\lim a_n = A$, valamint $\lim b_n = B$, akkor az $(a_n b_n)$ szorzatsorozat is konvergens, és $\lim (a_n b_n) = A \cdot B$.
+
+**Bizonyítás:**
+
+1. Írjuk fel a szorzat és a határértékek szorzatának különbségét. Alkalmazzunk egy algebrai trükköt (hozzáadunk és kivonunk $a_n B$-t), majd használjuk a háromszög-egyenlőtlenséget:
+   $$|a_n b_n - A B| = |a_n b_n - a_n B + a_n B - A B| \le |a_n||b_n - B| + |B||a_n - A|$$
+2. Mivel az $(a_n)$ sorozat konvergens, a korábban tanult tétel alapján **korlátos is**, tehát létezik olyan $K > 0$ szám, hogy minden $n$-re $|a_n| \le K$. Így az egyenlőtlenség:
+   $$|a_n b_n - A B| \le K|b_n - B| + |B||a_n - A|$$
+3. A konvergencia miatt a jobb oldalon szereplő $|b_n - B|$ és $|a_n - A|$ tényezők egy adott küszöbindex után tetszőlegesen (bármilyen $\varepsilon$-nál) kisebbé tehetők. Így a két tag összege is 0-hoz tart, amivel a tételt beláttuk.
+
+
+
+
+
+
+
+## 12. Konvergens sorozatok hányadosára vonatkozó tétel
+
+**Tétel:** Ha az $(a_n)$ és $(b_n)$ sorozatok konvergensek, $\lim a_n = A$, és $\lim b_n = B \neq 0$ (továbbá minden $n$-re $b_n \neq 0$), akkor az $\left(\frac{a_n}{b_n}\right)$ hányadossorozat is konvergens, és $\lim \frac{a_n}{b_n} = \frac{A}{B}$.
+
+**Bizonyítás:**
+
+1. Elegendő csak azt belátni, hogy az $\left(\frac{1}{b_n}\right)$ reciprok sorozat konvergens és a határértéke $\frac{1}{B}$. Ha ugyanis ez igaz, akkor a fenti **szorzatszabály (11. tétel)** alapján: $\lim \left(a_n \cdot \frac{1}{b_n}\right) = A \cdot \frac{1}{B} = \frac{A}{B}$.
+2. Vizsgáljuk meg a reciprok sorozat és a várt határérték különbségét közös nevezőre hozással:
+   $$\left|\frac{1}{b_n} - \frac{1}{B}\right| = \frac{|B - b_n|}{|b_n||B|}$$
+3. Mivel $b_n \to B$ és $B \neq 0$, egy kellően nagy indextől kezdve a sorozat elemei elég közel kerülnek $B$-hez (például biztosan nagyobbak lesznek, mint $B$ felének az abszolút értéke), azaz: $|b_n| > \frac{|B|}{2}$.
+4. Ezt az alsó becslést a nevezőbe beírva a tört értékét felülről becsülhetjük:
+   $$\left|\frac{1}{b_n} - \frac{1}{B}\right| < \frac{2}{|B|^2} \cdot |b_n - B|$$
+5. Mivel $\lim b_n = B$, a jobb oldalon lévő $|b_n - B|$ érték 0-hoz tart, ami magával húzza a bal oldalt is, tehát a reciprok sorozat valóban $\frac{1}{B}$-hez tart.
+
+
+
+
+
 ## 13. Monoton növő sorozat határértéke (véges és végtelen eset)
 
 **Tétel:**
@@ -253,3 +309,61 @@ $$\xi - \varepsilon < a_{n_0} \le a_n \le \xi$$
 * Mivel a sorozat monoton nő, ezért $\forall n \ge n_0$ indexre $a_{n_0} \le a_n$. Ezt összerakva kapjuk:
 $$K < a_{n_0} \le a_n$$
 * Tehát $\forall K \in \mathbb{R}$-hez $\exists n_0 \in \mathbb{N}$, hogy $\forall n \ge n_0$ esetén $a_n > K$. Ez pontosan a $+\infty$-hez tartás definíciója, így $\lim a_n = \infty$.
+
+
+
+
+## 14. Az $a_n = \left(1 + \frac{1}{n}\right)^n$ sorozat konvergenciája
+
+**Tétel:** Az $a_n = \left(1 + \frac{1}{n}\right)^n$ ($n \in \mathbb{N}^+$) sorozat konvergens. (A határértékét $e$-vel jelöljük).
+
+**Bizonyítás:**
+A konvergenciát a Weierstrass-tétel (ha egy sorozat monoton és korlátos, akkor konvergens) segítségével látjuk be.
+
+1. **Monotonitás:** Alkalmazzuk a számtani és mértani közepek közötti egyenlőtlenséget $n$ darab $\left(1 + \frac{1}{n}\right)$ és $1$ darab $1$-es számra:
+   $$\sqrt[n+1]{\left(1 + \frac{1}{n}\right)^n \cdot 1} < \frac{n \left(1 + \frac{1}{n}\right) + 1}{n + 1} = \frac{n + 1 + 1}{n + 1} = 1 + \frac{1}{n+1}$$
+   Mindkét oldalt $(n+1)$-edik hatványra emelve kapjuk, hogy $a_n < a_{n+1}$, tehát a sorozat **szigorúan monoton nő**.
+2. **Korlátosság:** Hasonlóan, az egyenlőtlenséget megfelelően alkalmazva bizonyítható, hogy a $b_n = \left(1 + \frac{1}{n}\right)^{n+1}$ sorozat szigorúan monoton csökken. Mivel minden $n$-re $a_n < b_n$, és a $(b_n)$ csökkenő, ezért bármelyik eleme (pl. $b_1 = 4$) **felső korlátja** az $(a_n)$ sorozatnak.
+3. Mivel $(a_n)$ monoton nő és felülről korlátos, a sorozat konvergens.
+
+
+
+
+
+
+## 15. Newton-féle iterációs eljárás $m$-edik gyökök keresésére
+
+**Tétel:** Adott $A > 0$ valós szám és $m \ge 2$ egész szám. A tetszőleges $x_1 > 0$ kezdőértékből indított
+$$x_{n+1} = \frac{1}{m} \left( (m-1)x_n + \frac{A}{x_n^{m-1}} \right)$$
+rekurzív sorozat konvergens, és $\lim x_n = \sqrt[m]{A}$.
+
+**Bizonyítás:**
+
+1. **Alulról korlátosság:** Alkalmazzuk a számtani-mértani közép egyenlőtlenséget $(m-1)$ darab $x_n$ és $1$ darab $\frac{A}{x_n^{m-1}}$ tagra:
+   $$x_{n+1} = \frac{(m-1)x_n + \frac{A}{x_n^{m-1}}}{m} \ge \sqrt[m]{x_n^{m-1} \cdot \frac{A}{x_n^{m-1}}} = \sqrt[m]{A}$$
+   Tehát $n \ge 1$ esetén az elemekre igaz, hogy $x_{n+1} \ge \sqrt[m]{A}$.
+2. **Monotonitás:** Mivel $x_n \ge \sqrt[m]{A}$ (ha $n \ge 2$), ezért $x_n^m \ge A$, amiből leosztva kapjuk, hogy $\frac{A}{x_n^{m-1}} \le x_n$. Ezt beírva a rekurzióba:
+   $$x_{n+1} \le \frac{(m-1)x_n + x_n}{m} = \frac{m \cdot x_n}{m} = x_n$$
+   A sorozat a második tagtól kezdve **monoton csökken** és **alulról korlátos**, így biztosan konvergens.
+3. **Határérték:** Jelöljük a határértéket $x$-szel. Ha $n \to \infty$, akkor $x_{n+1}$ és $x_n$ is $x$-hez tart. Ezt visszaírva a képletbe: $x = \frac{1}{m} \left( (m-1)x + \frac{A}{x^{m-1}} \right)$. Ezt átrendezve az $x^m = A$ egyenletet kapjuk, amiből $x = \sqrt[m]{A}$.
+
+
+
+
+
+
+## 16. A Cauchy-féle konvergenciakritérium sorozatokra
+
+**Tétel:** Egy valós $(a_n)$ sorozat akkor és csak akkor konvergens, ha **Cauchy-sorozat**, azaz bármely $\varepsilon > 0$ esetén létezik olyan $N$ küszöbindex, hogy minden $n, m \ge N$ indexre $|a_n - a_m| < \varepsilon$.
+
+**Bizonyítás:**
+
+**1. irány (Ha konvergens, akkor Cauchy-sorozat):**
+Tegyük fel, hogy $\lim a_n = A$. A konvergencia miatt adott $\frac{\varepsilon}{2} > 0$ értékhez létezik egy $N$ küszöbindex, amely után minden elem $\frac{\varepsilon}{2}$-nél közelebb van $A$-hoz. A háromszög-egyenlőtlenséget használva két tetszőleges $n, m \ge N$ elemre:
+$$|a_n - a_m| = |a_n - A + A - a_m| \le |a_n - A| + |A - a_m| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$
+Tehát a sorozat valóban Cauchy-tulajdonságú.
+
+**2. irány (Ha Cauchy-sorozat, akkor konvergens):**
+1. Minden Cauchy-sorozat **korlátos**, mert egy indextől kezdve az összes tag egy véges hosszúságú (például $\varepsilon=1$ sugarú) intervallumban marad.
+2. A Bolzano–Weierstrass-tétel értelmében minden korlátos sorozatnak van **konvergens részsorozata**. Jelöljük a részsorozat határértékét $A$-val.
+3. Mivel a Cauchy-tulajdonság miatt a végtelen felé haladva az elemek tetszőlegesen közel kerülnek *egymáshoz*, és a részsorozat révén végtelen sok elem *megközelíti $A$-t*, ezért maguknak a sorozat eredeti tagjainak is muszáj $A$-hoz tartaniuk.
